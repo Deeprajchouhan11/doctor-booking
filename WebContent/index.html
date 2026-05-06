@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Doctor</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Doctor Appointment Booking</h1>
+
+    <p class="subtitle">
+        Select Your Doctor
+    </p>
+
+    <div class="doctor-list">
+
+        <div class="doctor-card"
+             onclick="selectDoctor('Dr. Harsh Singh','Cardiologist')">
+
+            <div class="avatar">D</div>
+
+            <h3>Dr. Harsh Singh</h3>
+
+            <p>Cardiologist ⭐ 4.8</p>
+
+        </div>
+
+        <div class="doctor-card"
+             onclick="selectDoctor('Dr. Ritika Gupta','Dermatologist')">
+
+            <div class="avatar">D</div>
+
+            <h3>Dr. Ritika Gupta</h3>
+
+            <p>Dermatologist ⭐ 4.6</p>
+
+        </div>
+
+        <div class="doctor-card"
+             onclick="selectDoctor('Dr. Shardha Patidar','Pediatrician')">
+
+            <div class="avatar">D</div>
+
+            <h3>Dr. Shardha Patidar</h3>
+
+            <p>Pediatrician ⭐ 4.9</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function selectDoctor(name, specialty){
+
+    let doctor = {
+        name: name,
+        specialty: specialty
+    };
+
+    localStorage.setItem(
+        "doctor",
+        JSON.stringify(doctor)
+    );
+
+    window.location = "booking.html";
+}
+
+</script>
+
+</body>
+</html>
