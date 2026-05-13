@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Login - Bansal Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">🏥 Bansal Hospital</div>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="doctors.html">All Doctors</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="auth-buttons">
+        <a href="signup.html"><button>Create Account</button></a>
+        <a href="login.html"><button>Login</button></a>
+        <a href="doctor-login.html"><button>Doctor Login</button></a>
+        <a href="admin-login.html"><button>Admin Login</button></a>
+    </div>
+</nav>
+
+<div class="overlay">
+
+    <div class="card form-card">
+        <h1>Doctor Login</h1>
+
+        <input type="email" id="doctorEmail" placeholder="Doctor Email">
+        <input type="password" id="doctorPassword" placeholder="Password">
+
+        <button onclick="doctorLogin()">Login</button>
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

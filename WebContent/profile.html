@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">🏥 Bansal Hospital</div>
+</nav>
+
+<div class="overlay">
+
+    <div class="card form-card">
+        <h1>My Profile</h1>
+
+        <p><b>Name:</b> <span id="profileName"></span></p>
+        <br>
+        <p><b>Email:</b> <span id="profileEmail"></span></p>
+        <br><br>
+
+        <a href="myappointment.html">
+            <button>My Appointment</button>
+        </a>
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+<script>
+let user = JSON.parse(localStorage.getItem("user"));
+if(user){
+document.getElementById("profileName").innerText = user.name;
+document.getElementById("profileEmail").innerText = user.email;
+}
+</script>
+
+</body>
+</html>

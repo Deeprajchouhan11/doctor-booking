@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Doctor</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+<div class="logo">🏥 Add Doctor</div>
+</nav>
+
+<div class="overlay">
+
+<div class="card form-card">
+<h1>Add New Doctor</h1>
+
+<input type="file" id="docImage">
+<input type="text" id="docName" placeholder="Doctor Name">
+<input type="email" id="docEmail" placeholder="Doctor Email">
+<input type="text" id="docDegree" placeholder="Degree">
+<input type="password" id="docPass" placeholder="Password">
+<input type="text" id="docAddress" placeholder="Address">
+<input type="text" id="docExp" placeholder="Experience">
+<input type="number" id="docFees" placeholder="Fees">
+<textarea id="docAbout" placeholder="Short About Doctor"></textarea>
+
+<button onclick="addDoctor()">Add Doctor</button>
+</div>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

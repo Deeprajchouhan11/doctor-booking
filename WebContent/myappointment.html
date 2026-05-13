@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Appointment</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+<div class="logo">🏥 My Appointment</div>
+</nav>
+
+<div class="overlay">
+
+<div class="card form-card">
+<h1>Appointment Details</h1>
+
+<div id="appointmentBox"></div>
+
+<br>
+<button onclick="downloadPDF()">Download PDF</button>
+</div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+<script>
+let data = JSON.parse(localStorage.getItem("appointment"));
+
+if(data){
+document.getElementById("appointmentBox").innerHTML = `
+<p><b>ID:</b> ${data.id}</p><br>
+<p><b>Patient:</b> ${data.name}</p><br>
+<p><b>Doctor:</b> ${data.doctor}</p><br>
+<p><b>Date:</b> ${data.date}</p><br>
+<p><b>Time:</b> ${data.time}</p><br>
+<p><b>Payment:</b> ${data.payment}</p>
+`;
+}else{
+document.getElementById("appointmentBox").innerHTML =
+"<p>No appointment found</p>";
+}
+</script>
+
+</body>
+</html>

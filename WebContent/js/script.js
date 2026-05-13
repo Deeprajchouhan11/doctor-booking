@@ -1,56 +1,132 @@
-let selectedDoctor = "";
-let selectedSpecialty = "";
+function signup(){
+    let name=document.getElementById("name")?.value;
+    let email=document.getElementById("email")?.value;
+    let password=document.getElementById("password")?.value;
 
-function selectDoctor(doctor, specialty){
+    if(!name||!email||!password){
+        alert("Fill all fields");
+        return;
+    }
 
-    selectedDoctor = doctor;
-    selectedSpecialty = specialty;
+    localStorage.setItem("user",JSON.stringify({
+        name,email,password
+    }));
 
-    document.getElementById("bookingForm").style.display = "block";
+    alert("Account Created");
+    location.href="login.html";
 }
 
-function bookNow(event){
+function login(){
+    let email=document.getElementById("loginEmail")?.value;
+    let password=document.getElementById("loginPassword")?.value;
 
-    event.preventDefault();
+    let user=JSON.parse(localStorage.getItem("user"));
 
-    let patientName =
-        document.getElementById("patientName").value;
+    if(!user){
+        alert("Create account first");
+        return;
+    }
 
-    let email =
-        document.getElementById("email").value;
+    if(email===user.email && password===user.password){
+        alert("Login Successful");
+        location.href="profile.html";
+    }else{
+        alert("Wrong Login");
+    }
+}
 
-    let date =
-        document.getElementById("date").value;
+function logout(){
+    location.href="index.html";
+}
 
-    let time =
-        document.getElementById("time").value;
+function selectDoctor(name,specialty){
+    localStorage.setItem("doctor",JSON.stringify({
+        name,specialty
+    }));
+    location.href="booking.html";
+}
 
-    let reason =
-        document.getElementById("reason").value;
+function goPayment(){
+    let doctor=JSON.parse(localStorage.getItem("doctor"));
 
-    let appointment = {
+    let name=document.getElementById("patientName").value;
+    let email=document.getElementById("email").value;
+    let date=document.getElementById("date").value;
+    let time=document.getElementById("time").value;
+    let reason=document.getElementById("reason").value;
 
-        id: "APT-" + Date.now(),
+    localStorage.setItem("appointmentTemp",JSON.stringify({
+        name,email,date,time,reason,
+        doctor:doctor.name,
+        specialty:doctor.specialty
+    }));
 
-        name: patientName,
+    location.href="payment.html";
+}
 
-        doctor: selectedDoctor,
+function payNow(mode){
+    let temp=JSON.parse(localStorage.getItem("appointmentTemp"));
 
-        specialty: selectedSpecialty,
-
-        date: date,
-
-        time: time,
-
-        email: email,
-
-        reason: reason
+    let data={
+        id:"APT-"+Date.now(),
+        ...temp,
+        payment:mode
     };
 
-    localStorage.setItem(
-        "appointment",
-        JSON.stringify(appointment)
-    );
+    localStorage.setItem("appointment",JSON.stringify(data));
 
-    window.location = "success.html";
+    location.href="success.html";
+}
+
+function doctorLogin(){
+    location.href="doctor-dashboard.html";
+}
+
+function adminLogin(){
+    let email=document.getElementById("adminEmail")?.value;
+    let pass=document.getElementById("adminPassword")?.value;
+
+    if(email==="admin@bansal.com" && pass==="admin123"){
+        location.href="admin-dashboard.html";
+    }else{
+        alert("Wrong Admin Login");
+    }
+}
+
+function addDoctor(){
+    alert("Doctor Added Successfully");
+    location.href="doctors.html";
+}
+
+function downloadPDF(){
+    let data=JSON.parse(localStorage.getItem("appointment"));
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFillColor(14,116,244);
+    doc.rect(0,0,210,35,"F");
+
+    doc.setTextColor(255,255,255);
+    doc.setFontSize(24);
+    doc.text("BANSAL HOSPITAL",20,20);
+    doc.setFontSize(12);
+    doc.text("Professional Appointment Receipt",20,28);
+
+    doc.setTextColor(0,0,0);
+
+    let y=60;
+
+    doc.text("Appointment ID: "+data.id,20,y); y+=15;
+    doc.text("Patient Name: "+data.name,20,y); y+=15;
+    doc.text("Doctor: "+data.doctor,20,y); y+=15;
+    doc.text("Specialty: "+data.specialty,20,y); y+=15;
+    doc.text("Date: "+data.date,20,y); y+=15;
+    doc.text("Time: "+data.time,20,y); y+=15;
+    doc.text("Payment Mode: "+data.payment,20,y); y+=30;
+
+    doc.line(130,250,190,250);
+    doc.text(data.doctor,145,258);
+
+    doc.save("Bansal-Appointment.pdf");
 }

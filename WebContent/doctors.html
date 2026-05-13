@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Doctors - Bansal Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">🏥 Bansal Hospital</div>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="doctors.html">All Doctors</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="auth-buttons">
+        <a href="signup.html"><button>Create Account</button></a>
+        <a href="login.html"><button>Login</button></a>
+        <a href="doctor-login.html"><button>Doctor Login</button></a>
+        <a href="admin-login.html"><button>Admin Login</button></a>
+    </div>
+</nav>
+
+<div class="overlay">
+
+    <section class="hero glass small-hero">
+        <h1>Our Expert Doctors</h1>
+        <p>Choose your specialist and book instantly.</p>
+    </section>
+
+    <section class="doctor-grid" id="doctorGrid">
+
+        <div class="card">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg">
+            <h3>Dr. Shardha Bansal</h3>
+            <p>Cardiologist</p>
+            <button onclick="selectDoctor('Dr. Shardha','Cardiologist')">
+                Book Now
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="https://randomuser.me/api/portraits/men/52.jpg">
+            <h3>Dr. Divansh Porwal</h3>
+            <p>Orthopedic</p>
+            <button onclick="selectDoctor('Dr. Divansh','Orthopedic')">
+                Book Now
+            </button>
+        </div>
+
+        <div class="card">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg">
+            <h3>Dr. Deepraj Singh Chouhan</h3>
+            <p>Dermatologist</p>
+            <button onclick="selectDoctor('Dr. Deepraj','Dermatologist')">
+                Book Now
+            </button>
+        </div>
+
+    </section>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

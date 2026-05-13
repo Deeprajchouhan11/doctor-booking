@@ -1,130 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Booking Success</title>
+    <meta charset="UTF-8">
+    <title>Appointment Confirmed</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- PDF Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
-<div class="container">
-    <div class="card">
-        <h1 style="color:green;">✓ Appointment Confirmed</h1>
-        <p>Your appointment has been successfully booked.</p>
+<div class="overlay">
+    <div class="container">
 
-        <div id="details"></div>
+        <div class="hero small-hero">
+            <h1>✓ Appointment Confirmed</h1>
+            <p>Your booking is successful</p>
+        </div>
 
-        <br>
+        <div class="card form-card">
+            <div id="details"></div>
+            <br>
+            <button onclick="downloadPDF()">Download PDF</button>
+            <button onclick="window.location='index.html'">Back Home</button>
+        </div>
 
-        <button onclick="downloadPDF()">Download PDF</button>
-
-        <button onclick="window.location='index.html'">
-            Book Another Appointment
-        </button>
     </div>
 </div>
+
+<script src="js/script.js"></script>
 
 <script>
 let data = JSON.parse(localStorage.getItem("appointment"));
 
+if(data){
 document.getElementById("details").innerHTML = `
-    <h2>Appointment Details</h2>
-    <p><b>ID:</b> ${data.id}</p>
-    <p><b>Patient:</b> ${data.name}</p>
-    <p><b>Doctor:</b> ${data.doctor}</p>
-    <p><b>Specialty:</b> ${data.specialty}</p>
-    <p><b>Date:</b> ${data.date}</p>
-    <p><b>Time:</b> ${data.time}</p>
-    <p><b>Email:</b> ${data.email}</p>
-    <p><b>Reason:</b> ${data.reason}</p>
+<p><b>Appointment ID:</b> ${data.id}</p>
+<p><b>Patient:</b> ${data.name}</p>
+<p><b>Doctor:</b> ${data.doctor}</p>
+<p><b>Specialty:</b> ${data.specialty}</p>
+<p><b>Date:</b> ${data.date}</p>
+<p><b>Time:</b> ${data.time}</p>
+<p><b>Payment:</b> ${data.payment}</p>
 `;
-
-function downloadPDF(){
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    // Header
-    doc.setFillColor(14,116,244);
-    doc.rect(0,0,210,35,"F");
-
-    doc.setTextColor(255,255,255);
-    doc.setFontSize(24);
-    doc.text("BANSAL HOSPITAL INDORE", 20,18);
-
-    doc.setFontSize(11);
-    doc.text("Doctor Appointment Confirmation Slip",20,27);
-
-    doc.setFillColor(96,165,250);
-    doc.rect(0,35,210,4,"F");
-
-    // Main Box
-    doc.setFillColor(239,246,255);
-    doc.roundedRect(15,48,180,112,4,4,"F");
-
-    doc.setDrawColor(14,116,244);
-    doc.roundedRect(15,48,180,112,4,4);
-
-    doc.setTextColor(14,116,244);
-    doc.setFontSize(18);
-    doc.text("Appointment Details",25,63);
-
-    doc.setFontSize(12);
-
-    let y = 80;
-    const gap = 12;
-
-    function row(label,value){
-        doc.setTextColor(14,116,244);
-        doc.text(label,25,y);
-
-        doc.setTextColor(0,0,0);
-        doc.text(String(value),85,y);
-
-        y += gap;
-    }
-
-    row("Appointment ID :", data.id);
-    row("Patient Name :", data.name);
-    row("Doctor :", data.doctor);
-    row("Specialty :", data.specialty);
-    row("Date :", data.date);
-    row("Time :", data.time);
-    row("Email :", data.email);
-
-    // Notes
-    doc.setFillColor(219,234,254);
-    doc.roundedRect(15,175,180,48,4,4,"F");
-
-    doc.setTextColor(14,116,244);
-    doc.setFontSize(14);
-    doc.text("Important Notes",25,189);
-
-    doc.setTextColor(40,40,40);
-    doc.setFontSize(10);
-    doc.text("- Please arrive 15 minutes before appointment",25,199);
-    doc.text("- Carry ID proof and this confirmation slip",25,207);
-    doc.text("- Contact clinic for cancellation/reschedule",25,215);
-
-    // Signature line
-    doc.setDrawColor(14,116,244);
-    doc.line(130,252,190,252);
-
-    doc.setTextColor(14,116,244);
-    doc.setFontSize(11);
-    doc.text(data.doctor, 145, 259);   // selected doctor signature name
-
-    // Footer
-    doc.setFillColor(14,116,244);
-    doc.rect(0,280,210,17,"F");
-
-    doc.setTextColor(255,255,255);
-    doc.setFontSize(9);
-    doc.text("Thank you for choosing Bansal Hospital",62,290);
-
-    doc.save("Appointment-" + data.id + ".pdf");
 }
 </script>
+
 </body>
 </html>

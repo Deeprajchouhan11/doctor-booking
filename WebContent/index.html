@@ -1,76 +1,276 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Select Doctor</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bansal Hospital</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+}
+
+.navbar{
+    height:90px;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:34px;
+    font-weight:700;
+    color:#0f5bd7;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:35px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#222;
+    font-size:18px;
+    font-weight:600;
+}
+
+.auth-buttons button{
+    padding:12px 18px;
+    margin-left:10px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    background:blue;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.hero{
+    height:560px;
+    background:
+    linear-gradient(to right, rgba(0,30,80,.80), rgba(0,30,80,.20)),
+    url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1800&auto=format&fit=crop");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:80px;
+    color:white;
+}
+
+.hero h1{
+    font-size:76px;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero span{
+    color:#2d7dff;
+}
+
+.hero p{
+    font-size:24px;
+    line-height:1.6;
+    max-width:650px;
+    margin-bottom:30px;
+}
+
+.hero button{
+    width:50px;
+    padding:10px;
+    border:none;
+    border-radius:5%;
+    background:#2563eb;
+    color:rgb(15, 15, 115);
+    font-size:18px;
+    cursor:pointer;
+}
+
+.section-title{
+    text-align:center;
+    margin:50px 0 10px;
+    font-size:46px;
+    color:#13284d;
+}
+
+.line{
+    width:90px;
+    height:4px;
+    background:#2563eb;
+    margin:10px auto 40px;
+    border-radius:20px;
+}
+
+.doctor-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    padding:0 50px 60px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.card img{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.card h3{
+    font-size:30px;
+    margin-bottom:10px;
+    color:#13284d;
+}
+
+.card p{
+    font-size:20px;
+    margin:7px 0;
+    color:#555;
+}
+
+.book-btn{
+    margin-top:15px;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+</style>
 </head>
 <body>
 
-<div class="container">
+<nav class="navbar">
+    <div class="logo">🏥 Bansal Hospital</div>
 
-    <h1>Doctor Appointment Booking</h1>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="doctors.html">All Doctors</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
 
-    <p class="subtitle">
-        Select Your Doctor
+    <div class="auth-buttons">
+        <a href="signup.html"><button>Create Account</button></a>
+        <a href="login.html"><button>Login</button></a>
+        <a href="doctor-login.html"><button>Doctor Login</button></a>
+        <a href="admin-login.html"><button>Admin Login</button></a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Welcome to<br><span>Bansal Hospital</span></h1>
+
+    <p>
+        Your health is our priority. We provide trusted care,
+        expert doctors and modern facilities for a better tomorrow.
     </p>
 
-    <div class="doctor-list">
+    <a href="doctors.html">
+        <button>Book Appointment</button>
+    </a>
+</section>
 
-        <div class="doctor-card"
-             onclick="selectDoctor('Dr. Harsh Singh','Cardiologist')">
+<h2 class="section-title">Top Specialists</h2>
+<div class="line"></div>
 
-            <div class="avatar">D</div>
+<section class="doctor-grid">
 
-            <h3>Dr. Harsh Singh</h3>
-
-            <p>Cardiologist ⭐ 4.8</p>
-
+    <div class="card">
+        <img src="https://randomuser.me/api/portraits/women/65.jpg">
+        <div>
+            <h3>Dr. Shardha Bansal</h3>
+            <p>Cardiologist</p>
+            <p>MBBS, MD (Cardiology)</p>
+            <p>12+ Years Experience</p>
+            
         </div>
-
-        <div class="doctor-card"
-             onclick="selectDoctor('Dr. Ritika Gupta','Dermatologist')">
-
-            <div class="avatar">D</div>
-
-            <h3>Dr. Ritika Gupta</h3>
-
-            <p>Dermatologist ⭐ 4.6</p>
-
-        </div>
-
-        <div class="doctor-card"
-             onclick="selectDoctor('Dr. Shardha Patidar','Pediatrician')">
-
-            <div class="avatar">D</div>
-
-            <h3>Dr. Shardha Patidar</h3>
-
-            <p>Pediatrician ⭐ 4.9</p>
-
-        </div>
-
     </div>
 
-</div>
+    <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/52.jpg">
+        <div>
+            <h3>Dr. Divansh Porwal</h3>
+            <p>Orthopedic Surgeon</p>
+            <p>MBBS, MS (Orthopedics)</p>
+            <p>10+ Years Experience</p>
+            
+        </div>
+    </div>
 
-<script>
+    <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg">
+        <div>
+            <h3>Dr. Deepraj Singh Chouhan</h3>
+            <p>Dermatologist</p>
+            <p>MBBS, MD (Dermatology)</p>
+            <p>8+ Years Experience</p>
+          
+        </div>
+    </div>
 
-function selectDoctor(name, specialty){
-
-    let doctor = {
-        name: name,
-        specialty: specialty
-    };
-
-    localStorage.setItem(
-        "doctor",
-        JSON.stringify(doctor)
-    );
-
-    window.location = "booking.html";
-}
-
-</script>
+</section>
 
 </body>
 </html>
+/*
+*Full Stack Java Developer*
+1.Core Java - (3 week)
+variables , loops, funtion method.
+oop - class , object , inheritance , polymorphism.
+
+2.DSA - Arrays , Strings , Recursion , Sorting , Searching.
+
+3.Frontend - HTML ,CSS ,Javascript ,React (2 week)
+Project - login and register ui , dashboard ui
+
+4.Build REST APIs - Fetch API , Axios
+
+5.Backend - Spring Boot (3 week)
+Build REST API (CRUD)
+
+6.Database - MYSQL
+Queries(CRUD) - select , update , insert ,delete.
+joins - LEFT , RIGHT , INNER , FULL , CROSSS.
+Relationships - One to one , one to many , many to one , many to many.
+
+7.ORM - Hibernate , Maps java object to database
+
+8.Git , Github , Ppstman , Intellij IDEA
+
+9.Deployment 
+Backend - Render / Railway
+frontend - Vercel
+
+10.Project (3 week) 
+*/
+
+
+
+
+

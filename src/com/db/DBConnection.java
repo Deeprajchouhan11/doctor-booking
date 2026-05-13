@@ -10,16 +10,18 @@ public class DBConnection {
     public static Connection getConnection() {
 
         try {
+            if (con == null || con.isClosed()) {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-            con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/doctor_booking",
-                    "root",
-                    "1234"
-            );
+                String url = "jdbc:mysql://localhost:3306/doctor_booking?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+                String username = "root";
+                String password = "1234";
 
-            System.out.println("Database Connected");
+                con = DriverManager.getConnection(url, username, password);
+
+                System.out.println("MySQL Database Connected Successfully");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

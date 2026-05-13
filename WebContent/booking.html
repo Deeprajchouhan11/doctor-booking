@@ -1,103 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Book Appointment</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<title>Book Appointment</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="container">
+<div class="overlay">
+<div class="card form-card">
 
-    <div class="card">
+<h1>Book Appointment</h1>
+<p id="doctorInfo"></p>
 
-        <h1>Book Appointment</h1>
+<input type="text" id="patientName" placeholder="Patient Name">
+<input type="email" id="email" placeholder="Email">
+<input type="date" id="date">
 
-        <p id="doctorInfo"></p>
+<select id="time">
+<option>09:00 AM</option>
+<option>10:00 AM</option>
+<option>11:00 AM</option>
+<option>12:00 PM</option>
+</select>
 
-        <input type="text"
-               id="patientName"
-               placeholder="Patient Name">
+<textarea id="reason" placeholder="Reason"></textarea>
 
-        <br><br>
-
-        <input type="email"
-               id="email"
-               placeholder="Email">
-
-        <br><br>
-
-        <input type="date"
-               id="date">
-
-        <br><br>
-
-        <select id="time">
-
-            <option>09:00</option>
-            <option>10:00</option>
-            <option>11:00</option>
-            <option>12:00</option>
-
-        </select>
-
-        <br><br>
-
-        <textarea id="reason"
-                  placeholder="Reason for Visit"></textarea>
-
-        <br><br>
-
-        <button onclick="bookNow()">
-            Confirm Appointment
-        </button>
-
-    </div>
+<button onclick="goPayment()">Proceed to Payment</button>
 
 </div>
+</div>
 
+<script src="js/script.js"></script>
 <script>
-
-let doctor =
-    JSON.parse(localStorage.getItem("doctor"));
-
+let doctor = JSON.parse(localStorage.getItem("doctor"));
+if(doctor){
 document.getElementById("doctorInfo").innerHTML =
-    "<b>" + doctor.name + "</b> - " +
-    doctor.specialty;
-
-function bookNow(){
-
-    let appointment = {
-
-        id: "APT-" + Date.now(),
-
-        name:
-        document.getElementById("patientName").value,
-
-        doctor: doctor.name,
-
-        specialty: doctor.specialty,
-
-        date:
-        document.getElementById("date").value,
-
-        time:
-        document.getElementById("time").value,
-
-        email:
-        document.getElementById("email").value,
-
-        reason:
-        document.getElementById("reason").value
-    };
-
-    localStorage.setItem(
-        "appointment",
-        JSON.stringify(appointment)
-    );
-
-    window.location = "success.html";
+"<b>"+doctor.name+"</b> - "+doctor.specialty;
 }
-
 </script>
 
 </body>
